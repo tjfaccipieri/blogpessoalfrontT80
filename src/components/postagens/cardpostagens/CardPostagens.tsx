@@ -34,13 +34,13 @@ function CardPostagem({ postagem }: CardPostagensProps) {
       </div>
       <div className="flex">
         <Link
-          to=""
+          to={`/editarPostagem/${postagem.id}`}
           className="w-full text-white bg-indigo-400 hover:bg-indigo-800 flex items-center justify-center py-2"
         >
           <button>Editar</button>
         </Link>
         <Link
-          to=""
+          to={`/apagarPostagem/${postagem.id}`}
           className="text-white bg-red-400 hover:bg-red-700 w-full flex items-center justify-center"
         >
           <button>Deletar</button>
