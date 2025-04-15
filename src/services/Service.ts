@@ -4,9 +4,6 @@ const api = axios.create({
   baseURL: 'https://blogpessoalt80back-pf7i.onrender.com'
 })
 
-// get e delete, não envia nada
-// post e put, envia o json
-
 export const cadastrarUsuario = async (url: string, dados: Object, setDados: Function) => {
   const resposta = await api.post(url, dados)
   setDados(resposta.data)

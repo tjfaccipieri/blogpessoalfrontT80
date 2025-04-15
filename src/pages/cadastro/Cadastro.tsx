@@ -1,9 +1,10 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Usuario from '../../models/Usuario';
 import { cadastrarUsuario } from '../../services/Service';
 import './Cadastro.css';
+import { ToastAlerta } from '../../utils/ToastAlerta';
 
 function Cadastro() {
   const navigate = useNavigate();
@@ -47,13 +48,13 @@ function Cadastro() {
       setIsLoading(true);
       try {
         await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuario);
-        alert('Usuário cadastrado com sucesso!');
+        ToastAlerta('Usuário cadastrado com sucesso!','sucesso');
       } catch (error) {
-        alert('Erro ao cadastrar o usuário!');
+        ToastAlerta('Erro ao cadastrar o usuário!', 'erro');
       }
     } else {
-      alert(
-        'Dados do usuário inconsistentes! Verifique as informações do cadastro.'
+      ToastAlerta(
+        'Dados do usuário inconsistentes! Verifique as informações do cadastro.', 'erro'
       );
       setUsuario({ ...usuario, senha: '' });
       setConfirmaSenha('');
@@ -142,12 +143,12 @@ function Cadastro() {
             />
           </div>
           <div className="flex justify-around w-full gap-8">
-            <button
+            <Link to='/' className='w-full'><button
               type="reset"
               className="rounded text-white bg-red-400 hover:bg-red-700 w-1/2 py-2"
             >
               Cancelar
-            </button>
+            </button></Link>
             <button
               type="submit"
               className="rounded text-white bg-indigo-400 
